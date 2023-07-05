@@ -1,26 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import Toolbar from './Components/ToolBar';
+import Editor from './Components/editor';
 
-function App() {
+const App: React.FC = () => {
+  const [canvasContent, setCanvasContent] = useState<React.ReactNode>(null);
+
+  const handleAddText = () => {
+    const newTextElement = <p>New Text Element</p>;
+    setCanvasContent((prevContent) => (
+      <>
+        {prevContent}
+        {newTextElement}
+      </>
+    ));
+  };
+
+  const handleAddImage = () => {
+    const newImageElement = <img src="/Assembly.jpg" alt="Assembly" style={{ width: '200px', height: 'auto' }} />;
+    setCanvasContent((prevContent) => (
+      <>
+        {prevContent}
+        {newImageElement}
+      </>
+    ));
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Toolbar onAddText={handleAddText} onAddImage={handleAddImage} />
+      <Editor canvas={canvasContent} />
     </div>
   );
-}
+};
 
 export default App;
