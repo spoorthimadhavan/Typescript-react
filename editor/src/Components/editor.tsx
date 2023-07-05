@@ -1,12 +1,17 @@
 import React from 'react';
-import { Box } from '@mui/material';
+import styled from 'styled-components';
 
-type EditorProps = {
+interface EditorProps {
     canvas: React.ReactNode;
-};
+}
+
+const EditorContainer = styled.div`
+  border: 1px solid #ccc;
+  padding: 10px;
+`;
 
 const Editor: React.FC<EditorProps> = ({ canvas }) => {
-    return <Box>{canvas}</Box>;
+    return <EditorContainer>{canvas}</EditorContainer>;
 };
 
 export default Editor;
